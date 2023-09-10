@@ -1,5 +1,7 @@
+import { Sidebar } from "@/components/Sidebar";
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
+import { twMerge } from "tailwind-merge";
 import "./globals.css";
 
 const font = Figtree({ subsets: ["latin"] });
@@ -16,7 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body className={twMerge("flex", font.className)}>
+        <Sidebar />
+
+        {children}
+      </body>
     </html>
   );
 }
