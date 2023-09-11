@@ -1,6 +1,8 @@
 import { Sidebar } from "@/components/Sidebar";
 import { MyUserContextProvider } from "@/hooks/useUser";
+import { ModalProvider } from "@/providers/ModalProvider";
 import { SupabaseProvider } from "@/providers/SupabaseProvider";
+import { ToasterProvider } from "@/providers/ToasterProvider";
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import { twMerge } from "tailwind-merge";
@@ -21,8 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={twMerge("flex", font.className)}>
+        <ToasterProvider />
+
         <SupabaseProvider>
           <MyUserContextProvider>
+            <ModalProvider />
+
             <Sidebar />
             {children}
           </MyUserContextProvider>
