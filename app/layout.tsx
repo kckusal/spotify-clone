@@ -1,3 +1,4 @@
+import { getSongsByUserId } from "@/actions/getSongsByUserId";
 import { Sidebar } from "@/components/Sidebar";
 import { MyUserContextProvider } from "@/hooks/useUser";
 import { ModalProvider } from "@/providers/ModalProvider";
@@ -10,16 +11,20 @@ import "./globals.css";
 
 const font = Figtree({ subsets: ["latin"] });
 
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Spotify Clone",
   description: "Listen to music!",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const userSongs = await getSongsByUserId();
+
   return (
     <html lang="en">
       <body className={twMerge("flex", font.className)}>
@@ -29,7 +34,7 @@ export default function RootLayout({
           <MyUserContextProvider>
             <ModalProvider />
 
-            <Sidebar />
+            <Sidebar songs={userSongs} />
             {children}
           </MyUserContextProvider>
         </SupabaseProvider>

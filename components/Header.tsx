@@ -15,10 +15,10 @@ import { Button } from "./Button";
 
 interface Props {
   children: ReactNode;
-  classname?: string;
+  className?: string;
 }
 
-export const Header: FC<Props> = ({ classname, children }) => {
+export const Header: FC<Props> = ({ className, children }) => {
   const router = useRouter();
   const authModal = useAuthModal();
 
@@ -43,7 +43,7 @@ export const Header: FC<Props> = ({ classname, children }) => {
     <div
       className={twMerge(
         "h-fit bg-gradient-to-b from-emerald-800 p-6",
-        classname
+        className
       )}
     >
       <div className="w-full mb-4 flex items-center justify-between">
