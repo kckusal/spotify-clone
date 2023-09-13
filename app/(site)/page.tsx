@@ -1,7 +1,7 @@
 import { getSongs } from "@/actions/getSongs";
+import { PageContent } from "@/app/(site)/components/PageContent";
 import { Header } from "@/components/Header";
 import { ListItem } from "@/components/ListItem";
-import { PageContent } from "@/components/PageContent";
 
 // do not cache, always fetch up-to-date data
 export const revalidate = 0;

@@ -17,7 +17,7 @@ export const useOnPlay = (songs: Song[]) => {
     }
 
     if (!subscription) {
-      return subscribeModal.onOpen();
+      // TODO: Subscription check
     }
 
     player.setId(id);
