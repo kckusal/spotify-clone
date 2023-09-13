@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import { getURL } from "@/libs/helpers";
 import { stripe } from "@/libs/stripe";
 import { createOrRetrieveCustomer } from "@/libs/supabaseAdmin";
+import Stripe from "stripe";
 
 export async function POST(request: Request) {
   const { price, quantity = 1, metadata = {} } = await request.json();
@@ -37,7 +38,7 @@ export async function POST(request: Request) {
       subscription_data: {
         trial_from_plan: true,
         metadata,
-      },
+      } as Stripe.Checkout.SessionCreateParams.SubscriptionData,
       success_url: `${getURL()}/account`,
       cancel_url: `${getURL()}/`,
     });
